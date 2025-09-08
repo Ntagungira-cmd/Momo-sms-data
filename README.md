@@ -23,3 +23,4 @@ Team members:
 1. Regina Anthony Majura
 2. MUVUNYI Ndamage Herve Duke
 3. Mutoni Faith
+4. Ntagungira Ali Rashid
