@@ -18,6 +18,11 @@ Categorize and store structured data in a relational database.
 Build a frontend dashboard to visualize insights and analytics.
 Apply fullstack development principles in an enterprise context.
 
+
+High Level System Architecture
+
+https://drive.google.com/file/d/12XO4XoIcjarvEw8b-x4n6w5mG-oYTCjG/view?usp=sharing
+
 Team members:
 
 1. Regina Anthony Majura
