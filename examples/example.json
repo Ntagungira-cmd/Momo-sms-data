@@ -1,0 +1,91 @@
+{
+  "users":{
+    "user_id": "USR001",
+    "name": "Mukama Peter",
+    "phone_number": "+250788649730"
+  },
+
+  "wallet":{
+    "wallet_id": "WLT001",
+    "user_id": "USR001",
+    "bank_id": "0000001",
+    "balance": 250000.00,
+    "status": "Active"
+  },
+
+  "banks":{
+    "bank_id": "0000001",
+    "bank_name": "Bank Of Kigali",
+    "bank_code": "BK0001",
+    "swift_code": "BKIFRIKA",
+    "country": "Rwanda",
+    "is_active": true,
+    "integration_type": "api",
+    "api_endpoint": "https://api.bk.rw/v1/payments",
+    "settlement_account": "100-254-63230"
+  },
+
+  "transaction_categories":{
+    "transaction_category_id": "CAT001",
+    "type": "transfer"
+  },
+
+  "transactions":{
+    "transaction_id": "txn20250915001",
+    "sender":{
+      "user_id": "USR001",
+      "name":"Mukama Peter",
+      "phone_number": "+250788649730"
+    },
+    "receiver":{
+      "user_id": "USR002",
+      "name": "Uwamariya Jeanne",
+      "phone_number": "+250789162647"
+    },
+    "currency": "RWF",
+    "amount": 50000.50,
+    "status": "Completed",
+    "time": "2025-09-15 14:30:25",
+    "category":{
+      "transaction_category_id": "CAT001",
+      "type": "transfer"
+    },
+    "logs": [
+      {
+        "log_id": "LOG001",
+        "transaction_id": "txn20250915001",
+        "status": "info",
+        "log_time": "2025-09-15 14:30:25",
+        "message": "Transaction initiated by user USR001"
+      },
+      {
+        "log_id": "LOG002",
+        "transaction_id": "txn20250915001",
+        "status": "info",
+        "log_time": "2025-09-15 14:30:27",
+        "message": "Bank validation Successfull"
+      },
+      {
+        "log_id": "LOG003",
+        "transaction_id": "txn20250915001",
+        "status": "info",
+        "log_time":"2025-09-15 14:30:29",
+        "message": "Transaction Completed successfully!"
+      }
+    ]
+  },
+
+  "user_promotions":{
+    "promotion_id": "PROMO001",
+    "user_id": "USR001",
+    "promotion_type": "Moneyback",
+    "description": "Get 2% Moneyback on all transfers above 50,000 RWF",
+    "start_date": "2025-09-01 00:00:00",
+    "end_date": "2025-11-30 23:59:59",
+    "is_active": true
+  },
+
+  "promotions":{
+    "promotion_id": "PROMO001"
+  }
+}
