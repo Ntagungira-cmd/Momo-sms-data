@@ -1,0 +1,77 @@
+{
+  "users":{
+    "user_id": "string",
+    "name": "string",
+    "phone_number": "string"
+  },
+
+  "wallet":{
+    "wallet_id": "string",
+    "user_id": "string",
+    "bank_id": "string",
+    "balance": "number (decimal)",
+    "status": "string"
+  },
+
+  "banks":{
+    "bank_id": "string",
+    "bank_name": "string",
+    "bank_code": "string",
+    "swift_code": "string",
+    "country": "string",
+    "is_active": "boolean",
+    "integration_type": "string",
+    "api_endpoint": "string",
+    "settlement_account": "string"
+  },
+
+  "transaction_categories":{
+    "transaction_category_id": "string",
+    "type": "string"
+  },
+
+  "transactions":{
+    "transaction_id": "string",
+    "sender":{
+      "user_id": "string",
+      "name": "string",
+      "phone_number": "string"
+    },
+    "receiver": {
+      "user_id": "string",
+      "name": "string",
+      "phone_number": "string"
+    },
+    "currency": "string",
+    "amount": "number (decimal)",
+    "status": "string",
+    "time": "string (ISO 8601 timestamp)",
+    "category": {
+      "transaction_category_id": "string",
+      "type": "string"
+    },
+    "logs": [
+      {
+        "log_id": "string",
+        "transaction_id": "string",
+        "status": "string",
+        "log_time": "string {ISO 8601 timestamp)",
+        "message": "string"
+      }
+    ]
+  },
+
+  "user_promotions":{
+    "promotion_id": "string",
+    "user_id": "string",
+    "promotion_type": "string",
+    "description": "string",
+    "start_date": "string (ISO 8601 timestamp)",
+    "end_date": "string (ISO 8601 timestamp)",
+    "is_active": "boolean"
+  },
+
+  "promotions":{
+    "promotion_id": "string"
+  }
+}

@@ -259,10 +259,18 @@ All fields and nested objects follow this structure:
 ---
 
 
+
+High Level System Architecture
+
+https://drive.google.com/file/d/12XO4XoIcjarvEw8b-x4n6w5mG-oYTCjG/view?usp=sharing
+
+
+Scrum Board
+https://github.com/users/Ntagungira-cmd/projects/2
+
 Team members:
 
 1. Regina Anthony Majura
 2. MUVUNYI Ndamage Herve Duke
 3. Mutoni Faith
 4. Ntagungira Ali Rashid
-
