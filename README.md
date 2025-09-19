@@ -264,6 +264,8 @@ High Level System Architecture
 
 https://drive.google.com/file/d/12XO4XoIcjarvEw8b-x4n6w5mG-oYTCjG/view?usp=sharing
 
+ERD
+https://miro.com/app/board/uXjVJFhAUTk=/
 
 Scrum Board
 https://github.com/users/Ntagungira-cmd/projects/2
