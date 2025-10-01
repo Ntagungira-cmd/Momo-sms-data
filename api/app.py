@@ -1,3 +1,4 @@
+import base64
 import json
 import os
 from http.server import BaseHTTPRequestHandler, HTTPServer
@@ -6,11 +7,20 @@ from urllib.parse import urlparse
 from etl.parse_xml import save_to_json
 
 DATA_FILE = os.path.join(os.path.dirname(__file__), "..", "data", "processed", "sms_records.json")
+USER_FILE = os.path.join(os.path.dirname(__file__), "..", "data", "processed", "users.json")
 
 
 def load_data():
     with open(DATA_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
+
+
+def load_users():
+    try:
+        with open(USER_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return []
 
 
 class SMSHandler(BaseHTTPRequestHandler):
@@ -20,7 +30,52 @@ class SMSHandler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(json.dumps(data, indent=2).encode("utf-8"))
 
+    def _authenticate(self):
+        auth_header = self.headers.get("Authorization")
+
+        if not auth_header:
+            self.send_response(401)
+            self.send_header("WWW-Authenticate", 'Basic realm="SMS API"')
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps({"error": "Authentication required"}).encode("utf-8"))
+            return False
+
+        try:
+            auth_type, credentials = auth_header.split(" ", 1)
+
+            if auth_type.lower() != "basic":
+                self._send_json({"error": "Only Basic authentication is supported"}, 401)
+                return False
+
+            # Decode base64 credentials
+            decoded = base64.b64decode(credentials).decode("utf-8")
+            email, password = decoded.split(":", 1)
+
+            # Load users and validate
+            users = load_users()
+
+            for user in users:
+                if user.get("email") == email and user.get("password") == password:
+                    return True
+
+            # Invalid credentials
+            self.send_response(401)
+            self.send_header("WWW-Authenticate", 'Basic realm="SMS API"')
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps({"error": "Invalid credentials"}).encode("utf-8"))
+            return False
+
+        except (ValueError, KeyError):
+            self._send_json({"error": "Invalid authorization header format"}, 400)
+            return False
+
     def do_GET(self):
+
+        if not self._authenticate():
+            return
+
         parsed = urlparse(self.path)
         path = parsed.path
 
@@ -50,6 +105,10 @@ class SMSHandler(BaseHTTPRequestHandler):
             self._send_json({"error": "endpoint not found"}, 404)
 
     def do_POST(self):
+
+        if not self._authenticate():
+            return
+
         parsed = urlparse(self.path)
         path = parsed.path
 
@@ -86,6 +145,10 @@ class SMSHandler(BaseHTTPRequestHandler):
             self._send_json(new_record, 201)
 
     def do_PUT(self):
+
+        if not self._authenticate():
+            return
+
         parsed = urlparse(self.path)
         path = parsed.path
 
@@ -133,6 +196,10 @@ class SMSHandler(BaseHTTPRequestHandler):
             self._send_json({"error": "endpoint not found"}, 404)
 
     def do_DELETE(self):
+
+        if not self._authenticate():
+            return
+
         parsed = urlparse(self.path)
         path = parsed.path
 
