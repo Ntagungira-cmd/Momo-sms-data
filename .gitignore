@@ -59,5 +59,4 @@ Thumbs.db
 examples/
 tests/__pycache__/
 data/logs/
-data/processed/*.json
 *.sh
