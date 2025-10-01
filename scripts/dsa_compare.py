@@ -3,11 +3,7 @@
 Data Structures & Algorithms (DSA) Integration
 Comparing Linear Search vs Dictionary Lookup for SMS Transaction Records
 
-This script implements and compares:
-1. Linear Search - Scan through the list of transactions to find a record by ID
-2. Dictionary Lookup - Store transactions in a dictionary (id → transaction) and find by key
-3. Performance measurement and comparison for at least 20 records
-4. Analysis and suggestions for optimization
+
 """
 
 import time
